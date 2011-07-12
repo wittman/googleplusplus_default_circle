@@ -4,7 +4,7 @@
 // @namespace      http://wittman.org/projects/googleplusplus_default_circle
 // @include        *plus.google.com*
 // @description    Redirects from Stream view to a default circle
-// @version        0.1.0
+// @version        0.1.1
 // ==/UserScript==
 
 
@@ -72,7 +72,29 @@ function defaultCircle(){
 			return v;
 		}
 	}
-	
+	function empty_star_inserts(that){
+		var t = $(that);
+		var circle_link = t;
+		if(t.parent().find('.gpp__default_circle').length == 0){
+			t.prepend(' <a style="font-size:9px;position:absolute;margin-left:-34px;" class="gpp__default_circle">☆</a>');
+			var set_button = t.parent().find('.gpp__default_circle:first');
+			set_button.click(function(){
+				var t = $(this);
+				circle_link_url = circle_link.attr('href');
+				GM_setValue('gpp__default_circle_url', circle_link.attr('href'));
+				window.location.href = circle_link_url;
+				return false;
+			})
+			.hover(
+				function(){
+					$(this).empty().append('SET AS DEFAULT ★').css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-166px'});
+				},
+				function(){
+					$(this).empty().append('☆').css({'fontSize':'9px','color':'#36C','marginLeft':'-32px'});
+				}
+			);
+		}
+	}
 	function main_loop(){
 
 		var circle_links = $("#content .a-b-la-A a[href*='stream/']");
@@ -84,27 +106,7 @@ function defaultCircle(){
 					window.location.href = default_circle_url;
 				}
 				circle_links.each(function(){
-					var t = $(this);
-					var circle_link = t;
-					if(t.parent().find('.gpp__default_circle').length == 0){
-						t.prepend(' <a style="font-size:9px;position:absolute;margin-left:-34px;" class="gpp__default_circle">☆</a>');
-						var set_button = t.parent().find('.gpp__default_circle:first');
-						set_button.click(function(){
-							var t = $(this);
-							circle_link_url = circle_link.attr('href');
-							GM_setValue('gpp__default_circle_url', circle_link.attr('href'));
-							window.location.href = circle_link_url;
-							return false;
-						})
-						.hover(
-							function(){
-								$(this).empty().append('SET AS DEFAULT ★').css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-166px'});
-							},
-							function(){
-								$(this).empty().append('☆').css({'fontSize':'9px','color':'#36C','marginLeft':'-32px'});
-							}
-						);
-					}
+					empty_star_inserts(this);
 				});
 			}
 		}else{
@@ -130,16 +132,14 @@ function defaultCircle(){
 								$(this).empty().append('★').css({'fontSize':'9px','color':'#36C','marginLeft':'-32px'});
 							}
 						);
+					}else{
+						empty_star_inserts(this);
 					}
 				});
 			}
 		}
 		
 	}
-	/****** Before Loop Variables ******/
-	/*** Options ***/
-	//Set to 'hidden' to hide all comments by default, or 'shown' to show by default.
-	var visibility_default = 'shown'; /*___hidden*/
 	
 	/****** Start main_loop ******/
 	setInterval(main_loop, 3000);
