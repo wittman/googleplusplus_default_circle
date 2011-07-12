@@ -17,7 +17,7 @@ Feedback is welcome.
 
 ### Version 0.1.2
 
-- Change UI so empty stars always appear and can be clicked to set a new default without the extra step of unsetting the current (solid star) default.
+- Changed UI so empty stars always appear and can be clicked to set a new default without the extra step of unsetting the current (solid star) default. UPDATE
 
 ### Version 0.1.1
 
