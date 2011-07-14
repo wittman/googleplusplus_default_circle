@@ -15,6 +15,10 @@ Feedback is welcome.
 
 ## Change Log
 
+### Version 0.1.3
+
+- Extension is functionally, language independent (not dependant on English present in the page). NEW
+
 ### Version 0.1.2
 
 - Changed UI so empty stars always appear and can be clicked to set a new default without the extra step of unsetting the current (solid star) default. UPDATE
