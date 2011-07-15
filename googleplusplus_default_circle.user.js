@@ -4,7 +4,7 @@
 // @namespace      http://wittman.org/projects/googleplusplus_default_circle
 // @include        *plus.google.com*
 // @description    Redirects from Stream view to a default circle
-// @version        0.1.3
+// @version        0.1.1
 // ==/UserScript==
 
 
@@ -96,10 +96,11 @@ function defaultCircle(){
 		}
 	}
 	function main_loop(){
+
 		var circle_links = $("#content .a-b-la-A a[href*='stream/']");
 		var default_circle_url = GM_getValue('gpp__default_circle_url', '');
 		
-		if( $("#content .a-la-Dd:first").next().length > 0 ){ 
+		if( $("#contentPane span.a-b-f-U-R:contains('Stream')").length > 0 ){ 
 			if( circle_links.find('.gpp__default_circle').length == 0 ){
 				if( default_circle_url != ''){
 					window.location.href = default_circle_url;
