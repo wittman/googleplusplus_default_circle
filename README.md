@@ -15,6 +15,11 @@ Feedback is welcome.
 
 ## Change Log
 
+### Version 0.1.5
+
+- User-requested feature Set Stream as starred-default implemented. NEW
+- Changed button hover wording: from SET AS DEFAULT to simply SET to save space (all REMOVE DEFAULT is now UN-SET). UPDATE
+
 ### Version 0.1.4
 
 - This fixes today's version 0.1.3 release which was broken. FIX
