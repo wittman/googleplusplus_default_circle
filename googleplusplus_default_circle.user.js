@@ -4,7 +4,7 @@
 // @namespace      http://wittman.org/projects/googleplusplus_default_circle
 // @include        *plus.google.com*
 // @description    Redirects from Stream view to a default circle
-// @version        0.1.1
+// @version        0.1.4
 // ==/UserScript==
 
 
@@ -99,8 +99,9 @@ function defaultCircle(){
 
 		var circle_links = $("#content .a-b-la-A a[href*='stream/']");
 		var default_circle_url = GM_getValue('gpp__default_circle_url', '');
-		
-		if( $("#contentPane span.a-b-f-U-R:contains('Stream')").length > 0 ){ 
+		//OFF <a href="/stream" target="_top" class="d-h a-b-h-Jb a-la-h a-la-aH ">Stream</a>
+		//ON  <a href="/stream" target="_top" class="d-h a-b-h-Jb a-la-h a-la-aH  a-la-h-Pa">Stream</a>
+		if( $("#content .a-b-la-A a[href='/stream'].a-la-h-Pa:first").length > 0 ){ 
 			if( circle_links.find('.gpp__default_circle').length == 0 ){
 				if( default_circle_url != ''){
 					window.location.href = default_circle_url;

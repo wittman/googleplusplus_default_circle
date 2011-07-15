@@ -15,6 +15,10 @@ Feedback is welcome.
 
 ## Change Log
 
+### Version 0.1.4
+
+- This fixes today's version 0.1.3 release which was broken. FIX
+
 ### Version 0.1.3
 
 - Extension is functionally, language independent (not dependant on English present in the page). NEW
