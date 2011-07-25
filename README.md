@@ -15,6 +15,13 @@ Feedback is welcome.
 
 ## Change Log
 
+### Version 0.1.8
+
+- Improved compatibility by converting unicode star characters to images. UPDATE
+- Added small amount of left padding to stars for small browser window width cases. UPDATE
+- Removed underline style seen while a star was hovered. UPDATE
+- Now allows navigation to The Stream by clicking Stream without setting it as default. NEW
+
 ### Version 0.1.5
 
 - User-requested feature Set Stream as starred-default implemented. NEW
