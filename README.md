@@ -15,6 +15,10 @@ Feedback is welcome.
 
 ## Change Log
 
+### Version 0.2.1
+
+- Changes made today by Google introduced breaking DOM tree changes. All modules needed updating and are now fixed. FIX
+
 ### Version 0.1.9
 
 - Star images replaced with transparency versions for better meshing with background. Thanks goes to extension user John (theiconmaster.com) for fixing the images. FIX
