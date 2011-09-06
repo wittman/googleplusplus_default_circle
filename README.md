@@ -15,6 +15,14 @@ Feedback is welcome.
 
 ## Change Log
 
+### Version 0.2.6
+
+- Critical update needed to work with current state of Google+. Auto-healing (updating for CSS map) implemented. FIX
+
+### Version 0.2.2
+
+- Changes made by Google recently introduced breaking DOM tree changes. Critical update needed. FIX
+
 ### Version 0.2.1
 
 - Changes made today by Google introduced breaking DOM tree changes. All modules needed updating and are now fixed. FIX
