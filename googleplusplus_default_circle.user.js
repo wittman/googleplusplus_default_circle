@@ -4,7 +4,7 @@
 // @namespace      http://wittman.org/projects/googleplusplus_default_circle
 // @include        *plus.google.com*
 // @description    Redirects from Stream view to a default circle
-// @version        0.2.6
+// @version        0.2.7
 // ==/UserScript==
 
 
@@ -125,7 +125,7 @@ function defaultCircle(){
 							var mappings_length = Object.keys(data.mappings).length;
 							//console.log('date_right, default_date');
 							//console.log(date_right); console.log(default_selector_map['mapping date right']);
-							if(date_right > default_selector_map['mapping date right'] && mappings_length > 999 && (!$(SEL.posts).length || !$(SEL.comments_wrap).length || !$(SEL.circle_links).length)){
+							if(date_right > default_selector_map['mapping date right'] && mappings_length > 999 && (!$(SEL.stream_link).length || !$(SEL.posts).length || !$(SEL.comments_wrap).length || !$(SEL.circle_links).length)){
 								mappings = data.mappings;
 								re_map(mappings);
 								stor_set('GPlus CSS Map', JSON.stringify(mappings));
@@ -265,7 +265,7 @@ function defaultCircle(){
 		var t = $(that);
 		var circle_link = t;
 		if(t.parent().find('.gpp__default_circle').length == 0){
-			t.prepend(' <a style="font-size:9px;position:absolute;margin-left:-34px;" class="gpp__default_circle">' + STAR_OUTLINE + '</a>');
+			t.prepend(' <a style="font-size:9px;position:absolute;margin-left:-12px;" class="gpp__default_circle">' + STAR_OUTLINE + '</a>'); //-14 > -12
 			var set_button = t.parent().find('.gpp__default_circle:first');
 			set_button.click(function(){
 				var t = $(this);
@@ -277,10 +277,10 @@ function defaultCircle(){
 			})
 			.hover(
 				function(){
-					$(this).empty().append('SET ' + STAR_HOVER_SOLID).css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-70px'});
+					$(this).empty().append('SET ' + STAR_HOVER_SOLID).css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-50px'});
 				},
 				function(){
-					$(this).empty().append(STAR_OUTLINE).css({'fontSize':'9px','color':'#36C','marginLeft':'-32px'});
+					$(this).empty().append(STAR_OUTLINE).css({'fontSize':'9px','color':'#36C','marginLeft':'-12px'}); //-32 > -12
 				}
 			);
 		}
@@ -298,7 +298,7 @@ function defaultCircle(){
 	function process_circles(t, default_circle_url, circle_link){
 		//Process Circles
 		if( default_circle_url == circle_link.attr('href') && t.find('.gpp__default_circle').length == 0 ){
-			t.prepend(' <a style="font-size:9px;position:absolute;margin-left:-34px;" class="gpp__default_circle">' + STAR_SOLID + '</a>');
+			t.prepend(' <a style="font-size:9px;position:absolute;margin-left:-12px;" class="gpp__default_circle">' + STAR_SOLID + '</a>'); //-14 > -12
 			var set_button = t.parent().find('.gpp__default_circle:first');
 			set_button.click(function(){
 				var t = $(this);
@@ -309,16 +309,17 @@ function defaultCircle(){
 			})
 			.hover(
 				function(){
-					$(this).empty().append('UN-SET ' + STAR_HOVER_OUTLINE).css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-97px'});
+					$(this).empty().append('UN-SET ' + STAR_HOVER_OUTLINE).css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-77px'}); //-97 > -77
 				},
 				function(){
-					$(this).empty().append(STAR_SOLID).css({'fontSize':'9px','color':'#36C','marginLeft':'-32px'});
+					$(this).empty().append(STAR_SOLID).css({'fontSize':'9px','color':'#36C','marginLeft':'-12px'}); //-32 > -12
 				}
 			);
 		}else{
 			empty_star_inserts(t);
 		}
 	}
+	
 	function main_loop(){
 		//var circle_links_container = $("#content .a-b-la-A :first"); OLD
 		//var circle_links_container = $("#content .a-b-sb-z:first"); //OLD
@@ -342,9 +343,15 @@ function defaultCircle(){
 		//var stream =  $("#content .a-c-mb-S a[href='/stream']:first"); //OLD
 		//var stream =  $("#content .a-e-nb-B a[href='/stream']:first"); //OLD
         var stream =  $(SEL.stream_link); //NEW
+
+		stream.click(function(){
+			GM_setValue('gpp__default_circle_url', '/stream');
+		});
+		
+		//console.log(stream);
 		if(default_circle_url == '/stream'){
 			if(stream.parent().find('.gpp__default_circle').length == 0){
-				stream.before(' <a style="font-size:9px;position:absolute;margin-left:-4px;padding-top:7px" class="gpp__default_circle">' + STAR_SOLID + '</a>');
+				stream.before(' <a style="font-size:9px;position:absolute;margin-left:-2px;padding-top:7px" class="gpp__default_circle">' + STAR_SOLID + '</a>'); //-4 > -2
 				var set_button = stream.parent().find('.gpp__default_circle:first');
 				set_button.click(function(){
 					GM_removeItem('gpp__default_circle_url');
@@ -353,7 +360,7 @@ function defaultCircle(){
 				})
 				.hover(
 					function(){
-						$(this).empty().append('UN-SET ' + STAR_HOVER_OUTLINE).css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-66px','paddingTop':'3px'});
+						$(this).empty().append('UN-SET ' + STAR_HOVER_OUTLINE).css({'fontSize':'15px','color':'#DD4B39','marginLeft':'-66px','paddingTop':'3px'}); //-66 > -46
 					},
 					function(){
 						$(this).empty().append(STAR_SOLID).css({'fontSize':'9px','color':'#36C','marginLeft':'-2px','paddingTop':'6px'});
@@ -362,7 +369,7 @@ function defaultCircle(){
 			}
 		}else{
 			if(stream.parent().find('.gpp__default_circle').length == 0){
-				stream.before(' <a style="font-size:9px;position:absolute;margin-left:-4px;padding-top:7px" class="gpp__default_circle">' + STAR_OUTLINE + '</a>');
+				stream.before(' <a style="font-size:9px;position:absolute;margin-left:-2px;padding-top:7px" class="gpp__default_circle">' + STAR_OUTLINE + '</a>'); // -4 > -2
 				var set_button = stream.parent().find('.gpp__default_circle:first');
 				set_button.click(function(){
 					GM_setValue('gpp__default_circle_url', '/stream');
@@ -404,10 +411,13 @@ function defaultCircle(){
 						empty_star_inserts(this);
 					}
 				});
+				//console.log('default_circle_url:' + default_circle_url);
 				if( default_circle_url != '' && default_circle_url != '/stream'){
 					if( !allow_stream ){
+						//console.log('!allow_stream');
 						window.location.href = default_circle_url;
 					}else{
+						//console.log('allow_stream');
 						allow_stream = false;
 					}
 				}
@@ -439,6 +449,14 @@ function defaultCircle(){
 				}
 				//Process Circles
 				process_circles(t, default_circle_url, circle_link);
+				
+				//console.log('non-active-stream default_circle_url:' + default_circle_url);
+				var path = window.location.pathname;
+				//console.log(path); console.log(default_circle_url);
+				if((path == '/' || path == '/u/0/') && path != '/stream' && default_circle_url != '' && default_circle_url != '/stream'){
+					window.location.href = default_circle_url;
+				}
+				
 			});
 		}
 	}
